@@ -63,3 +63,15 @@ const galleryItems = [
     description: 'Lighthouse Coast Sea',
   },
 ];
+
+
+const galleryEl = document.querySelector('.gallery')
+
+const galleryArray = []
+const galleryMaking = galleryItems.forEach(({ preview, original, description }) => {
+  const itemEl = document.createElement('li')
+  itemEl.insertAdjacentHTML('beforeEnd', `<img src = ${preview}, data-source = ${preview}alt = ${description} height = 200 style="margin-right:15px">  </img>`)
+  galleryArray.push(itemEl)
+  console.log(galleryArray);
+})
+galleryEl.append(...galleryArray)
