@@ -69,8 +69,11 @@ const galleryEl = document.querySelector('.gallery')
 
 const galleryArray = []
 const galleryMaking = galleryItems.forEach(({ preview, original, description }) => {
+  const itemLink = document.createElement('a')
+  itemLink.classList.add('gallery__link')
   const itemEl = document.createElement('li')
-  itemEl.insertAdjacentHTML('beforeEnd', `<img src = ${preview}, data-source = ${preview}alt = ${description} height = 200 style="margin-right:15px">  </img>`)
+  itemEl.classList.add('gallery__item')
+  itemEl.insertAdjacentHTML('beforeEnd', `<a class="gallery__link", href="${original}" ><img  class="gallery__image", src = '${preview}', data-source = '${preview}', alt = '${description}',,>  </img></a>`)
   galleryArray.push(itemEl)
   console.log(galleryArray);
 })
