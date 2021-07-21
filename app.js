@@ -66,6 +66,10 @@ const galleryItems = [
 
 
 const galleryEl = document.querySelector('.gallery')
+const modalWindow = document.querySelector('.js-lightbox')
+const modalPicture = document.querySelector('.lightbox__image')
+const ModalCloseBtn = document.querySelector('[data-action="close-lightbox"]')
+
 
 const galleryArray = []
 const galleryMaking = galleryItems.forEach(({ preview, original, description }) => {
@@ -73,8 +77,55 @@ const galleryMaking = galleryItems.forEach(({ preview, original, description }) 
   itemLink.classList.add('gallery__link')
   const itemEl = document.createElement('li')
   itemEl.classList.add('gallery__item')
-  itemEl.insertAdjacentHTML('beforeEnd', `<a class="gallery__link", href="${original}" ><img  class="gallery__image", src = '${preview}', data-source = '${preview}', alt = '${description}',,>  </img></a>`)
+  itemEl.insertAdjacentHTML('beforeEnd', `<a class="gallery__link", href="${original}" ><img  class="gallery__image", src = '${preview}', data-source = '${original}', alt = '${description}',,>  </img></a>`)
   galleryArray.push(itemEl)
-  console.log(galleryArray);
+
 })
 galleryEl.append(...galleryArray)
+
+function modalOpener(e) {
+  e.preventDefault()
+  modalWindow.classList.add('is-open')
+  modalPicture.alt = e.target.alt
+  modalPicture.src = e.target.dataset.source
+}
+function modalCloser(e) {
+  modalWindow.classList.remove('is-open')
+  modalPicture.src = ''
+  modalPicture.alt = ''
+
+}
+
+function modalWindowCloser(e) {
+  if (e.target !== modalPicture) {
+    modalCloser()
+  }
+
+}
+
+function onEnterOpener(e) {
+  // console.log(e.key);
+  if (e.key !== "Enter") {
+    return
+  }
+
+}
+
+function onEscapeClose(e) {
+  if (e.key !== "Escape") {
+    return
+  }
+  modalCloser()
+}
+
+galleryEl.addEventListener('click', modalOpener)
+
+ModalCloseBtn.addEventListener('click', modalCloser)
+
+modalWindow.addEventListener('click', modalWindowCloser)
+
+window.addEventListener('keydown', onEnterOpener)
+
+window.addEventListener('keydown', onEscapeClose)
+
+
