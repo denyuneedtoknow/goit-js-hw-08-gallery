@@ -106,13 +106,13 @@ function modalWindowCloser(e) {
 
 }
 
-// function onEnterOpener(e) {
-//   console.log(e.key);
-//   if (e.key !== "Enter") {
-//     return
-//   }
+function onEnterOpener(e) {
+  console.log(e.key);
+  if (e.key !== "Enter") {
+    return
+  }
 
-// }
+}
 
 // function indexRevealer(e) {
 //   console.dir(e.target.dataset.number);
@@ -128,32 +128,32 @@ function onEscapeClose(e) {
 }
 
 
-function nextImage(e) {
-  const nextDataNumber = Number(e.target.dataset.number + 1)
-  // console.dir(nextDataNumber);
-  console.dir(galleryArray[Number(e.target.dataset.number)]);
-}
-function previousImage(e) {
-  console.log(Number(e.target.dataset.number) - 1);
-}
+// function nextImage(e) {
+//   const nextDataNumber = Number(e.target.dataset.number + 1)
+//   // console.dir(nextDataNumber);
+//   console.dir(galleryArray[Number(e.target.dataset.number)]);
+// }
+// function previousImage(e) {
+//   console.log(Number(e.target.dataset.number) - 1);
+// }
 
-function onArrowChanger(e) {
+// function onArrowChanger(e) {
 
-  if (modalWindow.classList.contains('is-open')) {
-    // console.log(e.key);
-    // console.dir(galleryEl);
-    // console.log(e.target.dataset.number);
-    if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') {
-      return
-    }
-    else if (e.key === 'ArrowRight') {
-      nextImage(e)
-    }
-    else if (e.key === 'ArrowLeft') {
-      previousImage(e)
-    }
-  }
-}
+//   if (modalWindow.classList.contains('is-open')) {
+//     // console.log(e.key);
+//     // console.dir(galleryEl);
+//     // console.log(e.target.dataset.number);
+//     if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') {
+//       return
+//     }
+//     else if (e.key === 'ArrowRight') {
+//       nextImage(e)
+//     }
+//     else if (e.key === 'ArrowLeft') {
+//       previousImage(e)
+//     }
+//   }
+// }
 
 
 
@@ -163,7 +163,7 @@ ModalCloseBtn.addEventListener('click', modalCloser)
 
 modalWindow.addEventListener('click', modalWindowCloser)
 
-// window.addEventListener('keydown', onEnterOpener)
+window.addEventListener('keydown', onEnterOpener)
 
 window.addEventListener('keydown', onArrowChanger)
 
