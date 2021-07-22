@@ -72,13 +72,16 @@ const ModalCloseBtn = document.querySelector('[data-action="close-lightbox"]')
 
 
 const galleryArray = []
-const galleryMaking = galleryItems.forEach(({ preview, original, description }) => {
+let numInOrder = 0
+const galleryMaking = galleryItems.forEach(({ preview, original, description }, idx) => {
+
   const itemLink = document.createElement('a')
   itemLink.classList.add('gallery__link')
   const itemEl = document.createElement('li')
   itemEl.classList.add('gallery__item')
-  itemEl.insertAdjacentHTML('beforeEnd', `<a class="gallery__link", href="${original}" ><img  class="gallery__image", src = '${preview}', data-source = '${original}', alt = '${description}',,>  </img></a>`)
+  itemEl.insertAdjacentHTML('beforeEnd', `<a class="gallery__link", data-number="${numInOrder += 1}", href="${original}" ><img  class="gallery__image", src = '${preview}', data-source = '${original}', alt = '${description}',,>  </img></a>`)
   galleryArray.push(itemEl)
+  console.log(idx);
 
 })
 galleryEl.append(...galleryArray)
@@ -103,13 +106,19 @@ function modalWindowCloser(e) {
 
 }
 
-function onEnterOpener(e) {
-  // console.log(e.key);
-  if (e.key !== "Enter") {
-    return
-  }
+// function onEnterOpener(e) {
+//   console.log(e.key);
+//   if (e.key !== "Enter") {
+//     return
+//   }
 
-}
+// }
+
+// function indexRevealer(e) {
+//   console.dir(e.target.dataset.number);
+// }
+
+
 
 function onEscapeClose(e) {
   if (e.key !== "Escape") {
@@ -118,14 +127,48 @@ function onEscapeClose(e) {
   modalCloser()
 }
 
+
+function nextImage(e) {
+  const nextDataNumber = Number(e.target.dataset.number + 1)
+  // console.dir(nextDataNumber);
+  console.dir(galleryArray[Number(e.target.dataset.number)]);
+}
+function previousImage(e) {
+  console.log(Number(e.target.dataset.number) - 1);
+}
+
+function onArrowChanger(e) {
+
+  if (modalWindow.classList.contains('is-open')) {
+    // console.log(e.key);
+    // console.dir(galleryEl);
+    // console.log(e.target.dataset.number);
+    if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') {
+      return
+    }
+    else if (e.key === 'ArrowRight') {
+      nextImage(e)
+    }
+    else if (e.key === 'ArrowLeft') {
+      previousImage(e)
+    }
+  }
+}
+
+
+
 galleryEl.addEventListener('click', modalOpener)
 
 ModalCloseBtn.addEventListener('click', modalCloser)
 
 modalWindow.addEventListener('click', modalWindowCloser)
 
-window.addEventListener('keydown', onEnterOpener)
+// window.addEventListener('keydown', onEnterOpener)
+
+window.addEventListener('keydown', onArrowChanger)
 
 window.addEventListener('keydown', onEscapeClose)
+
+// window.addEventListener('focusin', indexRevealer)
 
 
