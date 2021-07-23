@@ -79,9 +79,9 @@ const galleryMaking = galleryItems.forEach(({ preview, original, description }, 
   itemLink.classList.add('gallery__link')
   const itemEl = document.createElement('li')
   itemEl.classList.add('gallery__item')
-  itemEl.insertAdjacentHTML('beforeEnd', `<a class="gallery__link", data-number="${numInOrder += 1}", href="${original}" ><img  class="gallery__image", src = '${preview}', data-source = '${original}', alt = '${description}',,>  </img></a>`)
+  itemEl.insertAdjacentHTML('beforeEnd', `<a class="gallery__link", data-index="${idx}", href="${original}" ><img  class="gallery__image", src = '${preview}', data-source = '${original}', alt = '${description}',,>  </img></a>`)
   galleryArray.push(itemEl)
-  console.log(idx);
+  // console.log(idx);
 
 })
 galleryEl.append(...galleryArray)
@@ -106,13 +106,13 @@ function modalWindowCloser(e) {
 
 }
 
-function onEnterOpener(e) {
-  console.log(e.key);
-  if (e.key !== "Enter") {
-    return
-  }
+// function onEnterOpener(e) {
+//   console.log(e.key);
+//   if (e.key !== "Enter") {
+//     return
+//   }
 
-}
+// }
 
 // function indexRevealer(e) {
 //   console.dir(e.target.dataset.number);
@@ -128,32 +128,52 @@ function onEscapeClose(e) {
 }
 
 
+function nextImage(e) {
+  let dataNumber = Number(e.target.dataset.index)
+  let nextNumber = dataNumber + 1
+
+  const activeGalleryItem = galleryArray[dataNumber]
+  const nextGalleryItem = galleryArray[nextNumber]
+  // const previousGalleryItem = galleryArray[dataNumber - 1]
+
+  const activeImage = activeGalleryItem.querySelector('.gallery__image')
+  const nextImage = nextGalleryItem.querySelector('.gallery__image')
+
+  modalPicture.src = nextImage.dataset.source
+
+  console.dir(nextGalleryItem);
+
+}
+
 // function nextImage(e) {
-//   const nextDataNumber = Number(e.target.dataset.number + 1)
-//   // console.dir(nextDataNumber);
-//   console.dir(galleryArray[Number(e.target.dataset.number)]);
-// }
-// function previousImage(e) {
-//   console.log(Number(e.target.dataset.number) - 1);
+//   let dataNumber = Number(e.target.dataset.index)
+//   let nextNumber = dataNumber += 1
+//   console.log(nextNumber);
+//   return nextNumber
 // }
 
-// function onArrowChanger(e) {
 
-//   if (modalWindow.classList.contains('is-open')) {
-//     // console.log(e.key);
-//     // console.dir(galleryEl);
-//     // console.log(e.target.dataset.number);
-//     if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') {
-//       return
-//     }
-//     else if (e.key === 'ArrowRight') {
-//       nextImage(e)
-//     }
-//     else if (e.key === 'ArrowLeft') {
-//       previousImage(e)
-//     }
-//   }
+// function nextModalPic(nextNumber) {
+//   const nextGalleryItem = galleryArray[nextNumber]
+//   const nextImage = nextGalleryItem.querySelectorAll('.gallery__image')
+//   modalPicture.src = nextImage.dataset.source
 // }
+
+function onArrowChanger(e) {
+
+  if (modalWindow.classList.contains('is-open')) {
+
+    if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') {
+      return
+    }
+    else if (e.key === 'ArrowRight') {
+      nextImage(e)
+    }
+    else if (e.key === 'ArrowLeft') {
+      previousImage(e)
+    }
+  }
+}
 
 
 
@@ -163,7 +183,7 @@ ModalCloseBtn.addEventListener('click', modalCloser)
 
 modalWindow.addEventListener('click', modalWindowCloser)
 
-window.addEventListener('keydown', onEnterOpener)
+// window.addEventListener('keydown', onEnterOpener)
 
 window.addEventListener('keydown', onArrowChanger)
 
