@@ -130,18 +130,16 @@ function onEscapeClose(e) {
 
 function nextImage(e) {
   let dataNumber = Number(e.target.dataset.index)
+  const activeGalleryItem = galleryArray[dataNumber]
+  const activeImage = activeGalleryItem.querySelector('.gallery__image')
+
   let nextNumber = dataNumber + 1
 
-  const activeGalleryItem = galleryArray[dataNumber]
   const nextGalleryItem = galleryArray[nextNumber]
-  // const previousGalleryItem = galleryArray[dataNumber - 1]
 
-  const activeImage = activeGalleryItem.querySelector('.gallery__image')
   const nextImage = nextGalleryItem.querySelector('.gallery__image')
 
   modalPicture.src = nextImage.dataset.source
-
-  console.dir(nextGalleryItem);
 
 }
 
