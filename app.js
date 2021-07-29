@@ -82,7 +82,7 @@ const galleryMaking = galleryItems.forEach(
       `<a class="gallery__link", data-index="${idx}", href="${original}" ><img  class="gallery__image", src = '${preview}', data-source = '${original}', alt = '${description}',,>  </img></a>`
     );
     galleryArray.push(itemEl);
-    // console.log(idx);
+
   }
 );
 galleryEl.append(...galleryArray);
@@ -105,17 +105,7 @@ function modalWindowCloser(e) {
   }
 }
 
-// function onEnterOpener(e) {
-//   console.log(e.key);
-//   if (e.key !== "Enter") {
-//     return
-//   }
 
-// }
-
-// function indexRevealer(e) {
-//   console.dir(e.target.dataset.number);
-// }
 
 function onEscapeClose(e) {
   if (e.key !== "Escape") {
@@ -124,33 +114,7 @@ function onEscapeClose(e) {
   modalCloser();
 }
 
-// function nextImage(e) {
-//   let dataNumber = Number(e.target.dataset.index)
-//   const activeGalleryItem = galleryArray[dataNumber]
-//   const activeImage = activeGalleryItem.querySelector('.gallery__image')
 
-//   let nextNumber = dataNumber + 1
-
-//   const nextGalleryItem = galleryArray[nextNumber]
-
-//   const nextImage = nextGalleryItem.querySelector('.gallery__image')
-
-//   modalPicture.src = nextImage.dataset.source
-
-// }
-
-// function nextImage(e) {
-//   let dataNumber = Number(e.target.dataset.index)
-//   let nextNumber = dataNumber += 1
-//   console.log(nextNumber);
-//   return nextNumber
-// }
-
-// function nextModalPic(nextNumber) {
-//   const nextGalleryItem = galleryArray[nextNumber]
-//   const nextImage = nextGalleryItem.querySelectorAll('.gallery__image')
-//   modalPicture.src = nextImage.dataset.source
-// }
 
 function onArrowChanger(e) {
   if (modalWindow.classList.contains("is-open")) {
@@ -170,10 +134,10 @@ ModalCloseBtn.addEventListener("click", modalCloser);
 
 modalWindow.addEventListener("click", modalWindowCloser);
 
-// window.addEventListener('keydown', onEnterOpener)
+
 
 window.addEventListener("keydown", onArrowChanger);
 
 window.addEventListener("keydown", onEscapeClose);
 
-// window.addEventListener('focusin', indexRevealer)
+
