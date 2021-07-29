@@ -93,6 +93,7 @@ function modalOpener(e) {
   modalPicture.alt = e.target.alt;
   modalPicture.src = e.target.dataset.source;
 }
+
 function modalCloser(e) {
   modalWindow.classList.remove("is-open");
   modalPicture.src = "";
@@ -106,7 +107,6 @@ function modalWindowCloser(e) {
 }
 
 
-
 function onEscapeClose(e) {
   if (e.key !== "Escape") {
     return;
@@ -116,17 +116,17 @@ function onEscapeClose(e) {
 
 
 
-function onArrowChanger(e) {
-  if (modalWindow.classList.contains("is-open")) {
-    if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") {
-      return;
-    } else if (e.key === "ArrowRight") {
-      nextImage(e);
-    } else if (e.key === "ArrowLeft") {
-      previousImage(e);
-    }
-  }
-}
+// function onArrowChanger(e) {
+//   if (modalWindow.classList.contains("is-open")) {
+//     if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") {
+//       return;
+//     } else if (e.key === "ArrowRight") {
+//       nextImage(e);
+//     } else if (e.key === "ArrowLeft") {
+//       previousImage(e);
+//     }
+//   }
+// }
 
 galleryEl.addEventListener("click", modalOpener);
 
@@ -134,10 +134,8 @@ ModalCloseBtn.addEventListener("click", modalCloser);
 
 modalWindow.addEventListener("click", modalWindowCloser);
 
-
-
-window.addEventListener("keydown", onArrowChanger);
-
 window.addEventListener("keydown", onEscapeClose);
+
+// window.addEventListener("keydown", onArrowChanger);
 
 
