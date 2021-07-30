@@ -1,3 +1,7 @@
+const modalWindow = document.querySelector(".js-lightbox");
+const modalPicture = document.querySelector(".lightbox__image");
+const ModalCloseBtn = document.querySelector('[data-action="close-lightbox"]');
+
 function modalOpener(e) {
     e.preventDefault();
     modalWindow.classList.add("is-open");

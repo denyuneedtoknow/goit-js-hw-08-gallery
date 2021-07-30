@@ -1,6 +1,6 @@
 import { galleryItems } from './gallery-data'
 
-export default function galleryMaker() {
+export function galleryMaker() {
     const galleryEl = document.querySelector(".gallery");
     const galleryArray = [];
 
@@ -20,7 +20,8 @@ export default function galleryMaker() {
     );
 
     galleryEl.append(...galleryArray);
-    return galleryEl
+    // console.log(galleryEl);
+
 }
 
 

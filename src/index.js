@@ -1,21 +1,20 @@
 
-import galleryMaker from './scripts/gallery-maker';
-import galleryEl from './scripts/gallery-maker';
-
+import { galleryMaker, } from './scripts/gallery-maker';
 
 import { modalOpener, modalCloser, modalWindowCloser, onEscapeClose } from './scripts/modal-window'
 
 galleryMaker()
 
 const modalWindow = document.querySelector(".js-lightbox");
-const modalPicture = document.querySelector(".lightbox__image");
+
 const ModalCloseBtn = document.querySelector('[data-action="close-lightbox"]');
 
-console.log(galleryEl);
+const galleryPic = document.querySelector(".gallery");
 
 
-// ModalCloseBtn.addEventListener("click", modalCloser);
+galleryPic.addEventListener("click", modalOpener);
+ModalCloseBtn.addEventListener("click", modalCloser);
 
-// modalWindow.addEventListener("click", modalWindowCloser);
+modalWindow.addEventListener("click", modalWindowCloser);
 
-// window.addEventListener("keydown", onEscapeClose);
+window.addEventListener("keydown", onEscapeClose);
