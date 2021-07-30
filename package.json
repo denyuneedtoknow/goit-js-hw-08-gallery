@@ -6,7 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "parcel src/index.html",
-    "build": "parcel build src/index.html --public-url /goit-js-hw-08-gallery/"
+    "build": "parcel build src/index.html --public-url /goit-js-hw-08-gallery/",
+    "deploy": "gh-pages -d dist",
+    "predeploy": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -22,5 +24,8 @@
   "devDependencies": {
     "parcel-bundler": "^1.12.5"
   },
-  "dependencies": {}
+  "dependencies": {
+    "gh-pages": "^3.2.3",
+    "parcel-plugin-nuke-dist": "^1.0.1"
+  }
 }
