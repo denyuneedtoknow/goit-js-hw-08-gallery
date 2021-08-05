@@ -131,25 +131,38 @@ function onScrollingDack(evt) {
   });
 };
 
-function onScrollingNext(evt) {
-  imgSrc.forEach(elem => {
-    if (modalImage.src === elem) {
-      let index = imgSrc.indexOf(elem);
-      index = index + 1;
-      console.log(index);
-      modalImage.src = imgSrc[index];
-      modalImage.alt = imgAlt[index];
+// function onScrollingNext(evt) {
+//   imgSrc.forEach(elem => {
+//     if (modalImage.src === elem) {
+//       let index = imgSrc.indexOf(elem);
+//       index = index + 1;
+//       console.log(index);
+//       modalImage.src = imgSrc[index];
+//       modalImage.alt = imgAlt[index];
+//     }
+//   });
+// };
+
+// function arrowChanger(e) {
+//   if (e.key !== "leftArrow") {
+//     return;
+//   }
+//   onScrollingDack();
+// }
+
+function scrollRight(e) {
+  if (backdropEl.classList.contains('is-open') && e.key === 'ArrowRight') {
+    for (let i = 0; i < galleryItems.length; i += 1) {
+      let image = galleryItems[i];
+      if (image.original === imageOnBackdrop.src) {
+        if (!galleryItems[(i + 1)]) {
+          return
+        }
+        return imageOnBackdrop.src = galleryItems[(i + 1)].original;
+      }
     }
-  });
-};
-
-function arrowChanger(e) {
-  if (e.key !== "leftArrow") {
-    return;
   }
-  onScrollingDack();
 }
-
 
 galleryEl.addEventListener("click", modalOpener);
 
