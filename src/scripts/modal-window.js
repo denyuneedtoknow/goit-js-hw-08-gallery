@@ -29,4 +29,5 @@ function onEscapeClose(e) {
     modalCloser();
 }
 
+
 export { modalOpener, modalCloser, modalWindowCloser, onEscapeClose }

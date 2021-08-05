@@ -114,19 +114,42 @@ function onEscapeClose(e) {
   modalCloser();
 }
 
+const imgSrc = galleryItems.map(elem => elem.original);
+const imgAlt = galleryItems.map(elem => elem.description);
 
+console.log(imgSrc);
+console.log(imgAlt);
 
-// function onArrowChanger(e) {
-//   if (modalWindow.classList.contains("is-open")) {
-//     if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") {
-//       return;
-//     } else if (e.key === "ArrowRight") {
-//       nextImage(e);
-//     } else if (e.key === "ArrowLeft") {
-//       previousImage(e);
-//     }
-//   }
-// }
+function onScrollingDack(evt) {
+  imgSrc.forEach(elem => {
+    if (modalImage.src === elem) {
+      let index = imgSrc.indexOf(elem);
+      index = index - 1;
+      modalImage.src = imgSrc[index];
+      modalImage.alt = imgAlt[index];
+    }
+  });
+};
+
+function onScrollingNext(evt) {
+  imgSrc.forEach(elem => {
+    if (modalImage.src === elem) {
+      let index = imgSrc.indexOf(elem);
+      index = index + 1;
+      console.log(index);
+      modalImage.src = imgSrc[index];
+      modalImage.alt = imgAlt[index];
+    }
+  });
+};
+
+function arrowChanger(e) {
+  if (e.key !== "leftArrow") {
+    return;
+  }
+  onScrollingDack();
+}
+
 
 galleryEl.addEventListener("click", modalOpener);
 
@@ -136,6 +159,6 @@ modalWindow.addEventListener("click", modalWindowCloser);
 
 window.addEventListener("keydown", onEscapeClose);
 
-// window.addEventListener("keydown", onArrowChanger);
+window.addEventListener("keydown", arrowChanger);
 
 
